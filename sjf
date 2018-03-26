@@ -1,1 +1,69 @@
 
+#include<stdio.h>
+#include<conio.h>
+//#include<>
+
+struct time {
+	int exetime ;
+	int arrtime;
+}s1[100];
+int main()
+{
+	int n , /*exetime[100],arrivaltime[100],*/ wtime=0,tat=0;
+	int i ;
+	float awt , _awt=0 ,  _atat=0;
+	printf("enter total number of the process :\n");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("enter burst time of process %d : " , i+1);
+		scanf("%d" , &s1[i].exetime);
+		printf("enter the arrival time of process : ",i+1);
+		scanf("%d" , &s1[i].arrtime);
+	}
+	
+//assending order:-	
+	
+	int temp,j,temp1;
+	for(i=1;i<n;i++)
+{
+	for(j=1;j<n;j++)
+	{
+		if(s1[i].exetime<s1[j].exetime)
+		{
+			temp=s1[i].exetime;
+			temp1=s1[i].arrtime;
+			s1[i].exetime=s1[j].exetime;
+			s1[i].arrtime=s1[j].arrtime;
+			s1[j].exetime=temp;
+			s1[j].arrtime=temp1;
+		}
+	}
+}
+
+
+
+int sum=0;
+float awtime=0,atat=0,priority=0;
+	printf("\n PID \tAT \tBT \tCT \tWT \tTAT \tPRI");
+	{
+		for(i=0;i<n;i++)
+		{
+			sum=sum+s1[i].exetime;
+			tat=sum-s1[i].arrtime;
+			wtime=tat-s1[i].exetime;
+			priority=1+(wtime/s1[i].exetime);
+			printf("\n%d \t%d \t%d \t%d \t%d \t%d \t%f" , i+1 ,s1[i].arrtime, s1[i].exetime,sum ,wtime , tat , priority);
+			//_awt=_awt+wtime;
+			//tat=_atat+tat;
+			//wtime=wtime+s1[i].exetime;
+			awtime=awtime+wtime;
+			atat=atat+tat;
+		}
+	}	
+	//printf("%f  %f" , awtime,atat);
+	float averagetat=atat/n;
+	float averagewtime=awtime/n;
+	printf("\nAverage turnaround time\t: %f \n" , averagetat);
+	printf("\nAverage wating time\t    : %f \n" , averagewtime);
+}
