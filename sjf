@@ -52,7 +52,7 @@ float awtime=0,atat=0,priority=0;
 			sum=sum+s1[i].exetime;
 			tat=sum-s1[i].arrtime;
 			wtime=tat-s1[i].exetime;
-			priority=1+(wtime/s1[i].exetime);
+			priority=(1+wtime)/s1[i].exetime;
 			printf("\n%d \t%d \t%d \t%d \t%d \t%d \t%f" , i+1 ,s1[i].arrtime, s1[i].exetime,sum ,wtime , tat , priority);
 			//_awt=_awt+wtime;
 			//tat=_atat+tat;
